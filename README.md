@@ -100,6 +100,8 @@ ai-support-ticket-triage/
 ├── nginx/
 │   └── nginx.conf
 │
+├── screenshots/
+│
 ├── .github/
 │   └── workflows/
 │       ├── deploy.yml
@@ -133,11 +135,13 @@ docker-compose up --build
 ## Access Application
 
 Frontend:
+
 ```bash
 http://localhost:3000
 ```
 
 Backend Health Check:
+
 ```bash
 http://localhost:5000/health
 ```
@@ -180,6 +184,7 @@ This project was deployed to an AWS EC2 Ubuntu server using:
 - GitHub Actions automation
 
 Deployment included:
+
 - Production container orchestration
 - Reverse proxy routing
 - Automated restart workflows
@@ -221,6 +226,7 @@ GitHub Actions automates deployment by:
 A manual rollback workflow was implemented using GitHub Actions to support rapid recovery in the event of deployment issues.
 
 Rollback features:
+
 - Manual workflow trigger
 - Container redeployment support
 - Rapid recovery strategy
@@ -230,6 +236,7 @@ Rollback features:
 # Health Validation
 
 Deployment validation checks confirm:
+
 - Backend API availability
 - Frontend accessibility
 - Container health status
@@ -241,55 +248,37 @@ Deployment validation checks confirm:
 
 ## Application Dashboard
 
-Add Screenshot:
-```text
-/screenshots/dashboard.png
-```
+![Application Dashboard](./screenshots/dashboard.png)
 
 ---
 
 ## AI Ticket Analysis
 
-Add Screenshot:
-```text
-/screenshots/ticket-analysis.png
-```
+![AI Ticket Analysis](./screenshots/ticket-analysis.png)
 
 ---
 
 ## GitHub Actions Deployment
 
-Add Screenshot:
-```text
-/screenshots/github-actions-success.png
-```
+![GitHub Actions Deployment](./screenshots/github-actions-success.png)
 
 ---
 
 ## Docker Containers Running
 
-Add Screenshot:
-```text
-/screenshots/docker-containers.png
-```
+![Docker Containers Running](./screenshots/docker-containers.png)
 
 ---
 
 ## Nginx Validation
 
-Add Screenshot:
-```text
-/screenshots/nginx-validation.png
-```
+![Nginx Validation](./screenshots/nginx-validation.png)
 
 ---
 
 ## Rollback Workflow
 
-Add Screenshot:
-```text
-/screenshots/rollback-workflow.png
-```
+![Rollback Workflow](./screenshots/rollback-workflow.png)
 
 ---
 
