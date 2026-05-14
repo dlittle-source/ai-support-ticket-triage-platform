@@ -1,0 +1,30 @@
+name: Rollback AI Ticket Platform
+
+on:
+  workflow_dispatch:
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Rollback EC2 Deployment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/ai-support-ticket-triage-platform
+
+            echo "Rolling back to previous commit..."
+
+            git reset --hard HEAD~1
+
+            docker-compose down
+
+            docker-compose up -d --build
+
+            docker image prune -f
+
+            echo "Rollback complete."
