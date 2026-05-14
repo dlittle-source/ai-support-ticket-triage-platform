@@ -55,54 +55,63 @@ export default function Home() {
   };
 
   const analyzeTicket = async () => {
-    if (!ticket.trim()) {
-      setError("Please enter a support ticket before analyzing.");
-      return;
+  if (!ticket.trim()) {
+    setError("Please enter a support ticket before analyzing.");
+    return;
+  }
+
+  setLoading(true);
+  setError("");
+  setResult(null);
+
+  try {
+    const API_URL =
+      process.env.NEXT_PUBLIC_API_URL ||
+      (typeof window !== "undefined"
+        ? `${window.location.protocol}//${window.location.hostname}:5000`
+        : "http://localhost:5000");
+
+    const response = await fetch(`${API_URL}/api/triage`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ticket,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Failed to analyze ticket");
     }
 
-    setLoading(true);
-    setError("");
-    setResult(null);
+    setResult(data.analysis);
 
-    try {
-      const response = await fetch("http://localhost:5000/api/triage", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ticket }),
-      });
+    setHistory((prev) => [
+      {
+        id: Date.now(),
+        ticket,
+        analysis: data.analysis,
+        status: "New",
+      },
+      ...prev,
+    ]);
 
-      const data = await response.json();
+    addActivity(
+      `${data.analysis.severity} ${data.analysis.category} incident analyzed.`,
+      "analysis"
+    );
 
-      if (!data.success) {
-        throw new Error(data.error || "Analysis failed");
-      }
-
-      setResult(data.analysis);
-
-      setHistory((prev) => [
-        {
-          id: Date.now(),
-          ticket,
-          analysis: data.analysis,
-          status: "New",
-        },
-        ...prev,
-      ]);
-
-      addActivity(
-        `${data.analysis.severity} ${data.analysis.category} incident analyzed.`,
-        "analysis"
-      );
-
-      setTicket("");
-    } catch (err: any) {
-      setError(err.message || "Something went wrong");
-    } finally {
-      setLoading(false);
-    }
-  };
+    setTicket("");
+  } catch (err: any) {
+    console.error(err);
+    setError(err.message || "Failed to analyze ticket");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const updateTicketStatus = (id: number, status: TicketStatus) => {
     setHistory((prev) =>
