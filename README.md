@@ -1,170 +1,234 @@
-# AI Support Ticket Triage Platform
+# AI Support Ticket Triage Starter Kit
 
-An AI-powered support ticket triage platform designed to automatically analyze, prioritize, and classify incoming support requests using modern cloud and DevOps deployment practices.
+Production-style AI-powered support ticket triage platform designed for DevOps, cloud infrastructure, and AI application engineering workflows.
 
-This project demonstrates a complete production-style AI application deployment workflow using Docker, AWS EC2, Nginx, GitHub Actions CI/CD, automated health validation, and rollback capabilities.
+Built with modern full-stack technologies including Next.js, Node.js, Docker, and REST APIs to simulate real-world operational incident analysis environments.
 
 ---
 
-# Live Features
+# Product Overview
+
+The AI Support Ticket Triage Starter Kit is a hands-on learning project designed to help developers understand how AI-assisted operational workflows can be integrated into modern infrastructure and support environments.
+
+This project demonstrates:
+
+- AI-powered ticket analysis
+- Operational incident classification
+- Severity and priority scoring
+- Dockerized frontend/backend architecture
+- REST API communication
+- Real-time dashboard interfaces
+- Production-style project organization
+
+Perfect for developers building AI + DevOps portfolio projects.
+
+---
+
+# Dashboard Preview
+
+![Dashboard Overview](./screenshots/dashboard-overview.png)
+
+---
+
+# AI Ticket Analysis
+
+![Ticket Analysis](./screenshots/ticket-analysis.png)
+
+---
+
+# API Validation with Postman
+
+![Postman API Validation](./screenshots/postman-api-validation.png)
+
+---
+
+# Docker Container Deployment
+
+![Docker Containers](./screenshots/docker-containers.png)
+
+---
+
+# Features
 
 - AI-powered support ticket analysis
-- Ticket prioritization and categorization
-- Modern dashboard interface
-- Dockerized frontend and backend
-- Docker Compose orchestration
-- AWS EC2 deployment
-- Nginx reverse proxy
-- GitHub Actions CI/CD pipeline
-- Automated deployment health validation
-- Rollback workflow support
+- Severity classification engine
+- Priority assignment workflows
+- Business impact assessment
+- Operational recommendation engine
+- Real-time operational dashboard
+- Dockerized frontend and backend services
+- REST API integration
+- Sample operational datasets
+- Production-style architecture
+- Beginner-friendly deployment process
+
+---
+
+# Technology Stack
+
+## Frontend
+
+- Next.js
+- React
+- Tailwind CSS
+
+## Backend
+
+- Node.js
+- Express.js
+
+## DevOps / Infrastructure
+
+- Docker
+- Docker Compose
+
+## API / AI Workflow
+
+- REST APIs
+- JSON-based operational analysis
 
 ---
 
 # Architecture Overview
 
-## Application Flow
-
 ```text
-User Browser
-      ↓
-Nginx Reverse Proxy
-      ↓
-Frontend Container (React/Next.js)
-      ↓
-Backend API Container (Node.js/Express)
-      ↓
+Browser
+   ↓
+Frontend (Next.js)
+   ↓
+Backend API (Node.js / Express)
+   ↓
 AI Ticket Analysis Engine
 ```
 
 ---
 
-## CI/CD Deployment Flow
-
-```text
-Developer Pushes Code
-          ↓
-GitHub Actions Pipeline
-          ↓
-Docker Image Build
-          ↓
-EC2 Deployment
-          ↓
-Docker Compose Restart
-          ↓
-Health Validation
-          ↓
-Rollback Available if Needed
-```
-
----
-
-# Tech Stack
-
-## Frontend
-- React
-- Next.js
-- Tailwind CSS
-
-## Backend
-- Node.js
-- Express.js
-
-## DevOps / Infrastructure
-- Docker
-- Docker Compose
-- Nginx
-- AWS EC2
-- GitHub Actions
-
-## AI Integration
-- OpenAI API
-
----
-
 # Project Structure
 
-```bash
-ai-support-ticket-triage/
+```text
+ai-support-ticket-triage-starter-kit/
 │
 ├── frontend/
-│   ├── app/
-│   ├── components/
-│   └── Dockerfile
-│
 ├── backend/
-│   ├── routes/
-│   ├── services/
-│   └── Dockerfile
-│
-├── nginx/
-│   └── nginx.conf
-│
+├── docs/
 ├── screenshots/
-│
-├── .github/
-│   └── workflows/
-│       ├── deploy.yml
-│       └── rollback.yml
-│
+├── sample-data/
 ├── docker-compose.yml
-└── README.md
+├── README.md
+│
+└── docs/
+    ├── deployment-guide.md
+    └── architecture-overview.md
 ```
 
 ---
 
-# Local Development
+# Quick Start
 
-## Clone Repository
+## Prerequisites
+
+Before starting, install:
+
+- Docker Desktop
+- Git
+- Node.js (optional for local development)
+
+---
+
+# Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ai-support-ticket-triage.git
-cd ai-support-ticket-triage
+git clone <your-repository-url>
+cd ai-support-ticket-triage-starter-kit
 ```
 
 ---
+
+# Start the Application
+
+From the project root directory:
+
+```bash
+docker compose up --build
+```
+
+Docker will:
+
+- Build the frontend container
+- Build the backend container
+- Start the application services
+- Expose the frontend on port 3000
+- Expose the backend API on port 5000
+
+---
+
+# Access the Application
+
+## Frontend Dashboard
+
+```text
+http://localhost:3000
+```
+
+## Backend API
+
+```text
+http://localhost:5000
+```
+
+---
+
+# API Example
+
+## Endpoint
+
+```http
+POST /api/triage
+```
+
+## Request Body
+
+```json
+{
+  "ticket": "Production API returning intermittent 503 errors after deployment. Customers unable to access checkout services."
+}
+```
+
+## Example Response
+
+```json
+{
+  "success": true,
+  "analysis": {
+    "severity": "High",
+    "priority": "P1",
+    "category": "Deployment",
+    "summary": "Production API returning intermittent 503 errors after deployment.",
+    "business_impact": "Customers unable to access checkout services.",
+    "recommended_actions": [
+      "Roll back the latest deployment",
+      "Investigate deployment logs",
+      "Perform controlled redeployment"
+    ]
+  }
+}
+```
+
+---
+
+# Docker Commands
 
 ## Start Containers
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
----
-
-## Access Application
-
-Frontend:
+## Stop Containers
 
 ```bash
-http://localhost:3000
+docker compose down
 ```
-
-Backend Health Check:
-
-```bash
-http://localhost:5000/health
-```
-
----
-
-# Docker Deployment
-
-## Build Containers
-
-```bash
-docker-compose build
-```
-
----
-
-## Run Containers
-
-```bash
-docker-compose up -d
-```
-
----
 
 ## View Running Containers
 
@@ -174,144 +238,74 @@ docker ps
 
 ---
 
-# AWS EC2 Deployment
+# Sample Learning Outcomes
 
-This project was deployed to an AWS EC2 Ubuntu server using:
+By completing this project, you will learn:
 
-- Docker
-- Docker Compose
-- Nginx reverse proxy
-- GitHub Actions automation
-
-Deployment included:
-
-- Production container orchestration
-- Reverse proxy routing
-- Automated restart workflows
-- Health validation checks
-- Rollback workflow support
+- Docker containerization
+- Multi-service orchestration
+- Frontend/backend architecture
+- REST API workflows
+- AI-assisted operational analysis
+- Production-style application structure
+- Real-world troubleshooting concepts
+- Modern DevOps development practices
 
 ---
 
-# Nginx Reverse Proxy
+# Future Expansion Ideas
 
-Nginx was configured as a reverse proxy to route traffic to the frontend application container.
+This starter kit can be expanded with:
 
-Example architecture:
-
-```text
-Internet
-    ↓
-Nginx :80
-    ↓
-Frontend Container :3000
-```
-
----
-
-# CI/CD Pipeline
-
-GitHub Actions automates deployment by:
-
-1. Connecting to AWS EC2
-2. Pulling latest source code
-3. Rebuilding Docker containers
-4. Restarting services
-5. Performing health validation checks
+- OpenAI API integration
+- PostgreSQL database support
+- Authentication and authorization
+- CI/CD pipelines
+- AWS EC2 deployment
+- Nginx reverse proxy integration
+- Kubernetes deployment workflows
+- Real-time WebSocket event streaming
 
 ---
 
-# Rollback Workflow
+# Perfect For
 
-A manual rollback workflow was implemented using GitHub Actions to support rapid recovery in the event of deployment issues.
-
-Rollback features:
-
-- Manual workflow trigger
-- Container redeployment support
-- Rapid recovery strategy
-
----
-
-# Health Validation
-
-Deployment validation checks confirm:
-
-- Backend API availability
-- Frontend accessibility
-- Container health status
-- Reverse proxy functionality
+- DevOps Engineers
+- Cloud Engineers
+- AI Application Developers
+- Full Stack Developers
+- Platform Engineers
+- Students building portfolio projects
+- Developers learning Docker workflows
+- Engineers exploring AI operational tooling
 
 ---
 
-# Screenshots
+# Documentation
 
-## Application Dashboard
+Additional documentation is included inside the `/docs` folder.
 
-![Application Dashboard](./screenshots/dashboard.png)
+Included documentation:
 
----
-
-## AI Ticket Analysis
-
-![AI Ticket Analysis](./screenshots/ticket-analysis.png)
+- Deployment Guide
+- Architecture Overview
 
 ---
 
-## GitHub Actions Deployment
+# License
 
-![GitHub Actions Deployment](./screenshots/github-actions-success.png)
-
----
-
-## Docker Containers Running
-
-![Docker Containers Running](./screenshots/docker-containers.png)
+This project is provided for educational and portfolio development purposes.
 
 ---
 
-## Nginx Validation
+# Disclaimer
 
-![Nginx Validation](./screenshots/nginx-validation.png)
-
----
-
-## Rollback Workflow
-
-![Rollback Workflow](./screenshots/rollback-workflow.png)
-
----
-
-# Future Improvements
-
-- User authentication
-- Persistent database integration
-- Kubernetes deployment
-- Monitoring dashboards
-- Logging aggregation
-- Slack / Teams integrations
-- AI analytics reporting
-- Role-based access control
-
----
-
-# Learning Outcomes
-
-This project provided hands-on experience with:
-
-- AI application deployment
-- Production Docker workflows
-- Reverse proxy configuration
-- CI/CD automation
-- Cloud infrastructure deployment
-- Infrastructure reliability engineering
-- Deployment validation strategies
-- Rollback recovery workflows
+This project is intended as a learning-focused starter kit and demonstration environment for AI-powered operational workflows.
 
 ---
 
 # Author
 
-Demarko Little
+Built by DemarkoCloud
 
-Cloud | DevOps | AI Engineer
+Cloud • DevOps • AI Engineering
